@@ -7,6 +7,13 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
+	
+	private Modele modele;
+	@Override
+	public void init()
+	{
+		this.modele = new Modele();
+	}
 	@Override
 	public void start(Stage primaryStage) {
 		try {
