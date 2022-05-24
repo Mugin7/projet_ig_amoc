@@ -9,16 +9,16 @@ import javafx.scene.image.ImageView;
 public class PartieController {
 	private Modele modele = Main.modele;
 	public Label labelMotMystere;
-	private String affichageMot;
+	// private String affichageMot;
 	// private ArrayList<Character> motTableau = new ArrayList<>();
 	public ImageView lePendu;
-	private String motMystere = "POMME"; // modele.getMotMystere();
-	private String motMystereCache = "";
+	private String motMystere = modele.getMotMystere(); // modele.getMotMystere();
+	private String affichageMot = "";
 	
 	public void debutPartie () {
+		// modele.jeu.setMotMystere("POMME");
 		initAffichageMot();
-		labelMotMystere.setText(motMystereCache);
-		
+		labelMotMystere.setText(affichageMot);
 	}
 	
 	private void initAffichageMot () {
@@ -26,8 +26,8 @@ public class PartieController {
 		for (int i=0 ; i < motMystere.length() ; i++) {
 			motTableau.set(i, motMystere.charAt(i));
 		}*/
-		for (int i=0 ; i < motMystere.length() ; i++) {
-			motMystereCache = motMystereCache + "_";
+		for (int i=0 ; i < modele.getMotMystere().length() ; i++) {
+			affichageMot = affichageMot + "_";
 		}
 	}
 	
@@ -35,6 +35,12 @@ public class PartieController {
 	public void proposerLettre (String s) {
 		Vector<Integer> v = new Vector<Integer>();
 		modele.jeu.setNbLettresTrouvees(modele.jeu.getNbLettresTrouvees() + modele.jeu.ChercherLettreDansMot(s.charAt(0), v));
+		StringBuilder sb = new StringBuilder(affichageMot);
+		for (int i : v) {
+	        sb.setCharAt(i, s.charAt(0));
+		}
+		affichageMot = sb.toString();
+		labelMotMystere.setText(affichageMot);
 	}
 	
 	

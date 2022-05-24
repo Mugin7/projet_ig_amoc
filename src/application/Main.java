@@ -13,6 +13,7 @@ public class Main extends Application {
 	public void init()
 	{
 		this.modele = new Modele();
+		modele.jeu.InitialiserPartie();
 	}
 	@Override
 	public void start(Stage primaryStage) {

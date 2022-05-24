@@ -86,7 +86,7 @@
             <Image url="@../../Images/luffy_pendu_1.png" />
          </image>
       </ImageView>
-      <Label fx:id="labelMotMystere" style="-fx-background-image: url('file:Images/fond_mot_mystere.png'); -fx-background-position: center; -fx-background-size: stretch;" GridPane.columnIndex="2" GridPane.columnSpan="14" GridPane.rowIndex="3" GridPane.rowSpan="3">
+      <Label fx:id="labelMotMystere" prefHeight="70.0" prefWidth="428.0" style="-fx-background-image: url('file:Images/fond_mot_mystere.png'); -fx-background-position: center; -fx-background-size: stretch;" GridPane.columnIndex="2" GridPane.columnSpan="14" GridPane.rowIndex="3" GridPane.rowSpan="3">
          <font>
             <Font name="Broadway" size="60.0" />
          </font>
