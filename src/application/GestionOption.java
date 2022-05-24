@@ -21,6 +21,10 @@ public class GestionOption {
 		return choixDico;
 	}
 	
+	public int getChoixAvatar () {
+		return choixAvatar;
+	}
+	
 	public void setTaillePolice(int taille) {
 		this.taillePolice = taille;
 	}
@@ -30,6 +34,8 @@ public class GestionOption {
 	}
 	
 	public void setChoixAvatar (int avatar) {
+		if (avatar != 1 && avatar != 2)
+			throw new IllegalArgumentException();
 		this.choixAvatar = avatar;
 	}
 	

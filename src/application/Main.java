@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	
-	private Modele modele;
+	public static Modele modele;
 	@Override
 	public void init()
 	{
@@ -17,8 +17,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Intro.fxml"));
-	        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Partie.fxml"));
+	        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 	        primaryStage.setTitle("Le Pendu AMOC");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
