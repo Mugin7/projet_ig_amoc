@@ -1,8 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.OutroController">
-	<!-- TODO Add Nodes -->
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OutroController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="461.0" fitWidth="760.0" layoutX="-99.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/image_outro.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onActionJouer" prefHeight="28.0" prefWidth="24.0" style="-fx-background-color: #1FA055;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/icone_jouer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="55.0" layoutY="14.0" mnemonicParsing="false" onAction="#onActionParametre" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: #FFFF6B;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/icone_options.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="95.0" layoutY="14.0" mnemonicParsing="false" onAction="#onActionAide" prefHeight="28.0" prefWidth="24.0" style="-fx-background-color: #1e90ff;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/icone_support.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="136.0" layoutY="14.0" mnemonicParsing="false" onAction="#onActionQuitter" prefHeight="28.0" prefWidth="24.0" style="-fx-background-color: #ff0921;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/icone_quitter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
