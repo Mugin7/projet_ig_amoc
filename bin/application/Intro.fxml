@@ -11,15 +11,10 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="383.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IntroController">
+<AnchorPane style="-fx-background-image: url('file:Images/image_intro.jpg'); -fx-background-position: center; -fx-background-size: stretch; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IntroController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0">
+      <Pane>
          <children>
-            <ImageView fitHeight="516.0" fitWidth="878.0" layoutX="-193.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Images/image_intro.jpg" />
-               </image>
-            </ImageView>
             <Button contentDisplay="RIGHT" ellipsisString="10" layoutX="223.0" layoutY="140.0" lineSpacing="50.0" mnemonicParsing="false" onAction="#onActionJouer" prefHeight="30.0" prefWidth="155.0" style="-fx-background-color: #1FA055;" text="JOUER">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true">

@@ -9,20 +9,23 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	public static Modele modele;
+	public  static Stage stage;
 	@Override
 	public void init()
 	{
-		this.modele = new Modele();
-		modele.jeu.InitialiserPartie();
+		Main.modele = new Modele();
+		Main.modele.jeu.InitialiserPartie();
+		Main.modele.jeu.setNbMaxErreurs(6);
 	}
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			Main.stage = primaryStage;
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Partie.fxml"));
 	        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-	        primaryStage.setTitle("Le Pendu AMOC");
-	        primaryStage.setScene(scene);
-	        primaryStage.show();
+	        stage.setTitle("Le Pendu AMOC");
+	        stage.setScene(scene);
+	        stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

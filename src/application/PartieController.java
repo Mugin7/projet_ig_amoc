@@ -1,150 +1,320 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.Vector;
 
+import java.util.Vector;
+import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class PartieController {
-	private Modele modele = Main.modele;
 	public Label labelMotMystere;
 	// private String affichageMot;
 	// private ArrayList<Character> motTableau = new ArrayList<>();
+	public String nomPendu;
 	public ImageView lePendu;
-	private String motMystere = modele.getMotMystere(); // modele.getMotMystere();
 	private String affichageMot = "";
 	
-	public void debutPartie () {
-		// modele.jeu.setMotMystere("POMME");
+	@FXML
+	public void initialize() {
 		initAffichageMot();
 		labelMotMystere.setText(affichageMot);
+		if (Main.modele.opt.getChoixAvatar() == 1)
+			nomPendu = "pirate";
+		else
+			nomPendu = "luffy";
+		labelMotMystere.setAlignment(Pos.BASELINE_CENTER);
+		
 	}
 	
 	private void initAffichageMot () {
-		/* motTableau.ensureCapacity(motMystere.length());
-		for (int i=0 ; i < motMystere.length() ; i++) {
-			motTableau.set(i, motMystere.charAt(i));
-		}*/
-		for (int i=0 ; i < modele.getMotMystere().length() ; i++) {
+		for (int i=0 ; i < Main.modele.getMotMystere().length() ; i++) {
 			affichageMot = affichageMot + "_";
 		}
 	}
 	
 	
-	public void proposerLettre (String s) {
+	public boolean proposerLettre (String s) {
 		Vector<Integer> v = new Vector<Integer>();
-		modele.jeu.setNbLettresTrouvees(modele.jeu.getNbLettresTrouvees() + modele.jeu.ChercherLettreDansMot(s.charAt(0), v));
-		StringBuilder sb = new StringBuilder(affichageMot);
-		for (int i : v) {
-	        sb.setCharAt(i, s.charAt(0));
+		Main.modele.jeu.setNbLettresTrouvees(Main.modele.jeu.getNbLettresTrouvees() + Main.modele.jeu.ChercherLettreDansMot(s.charAt(0), v));
+		if (v.isEmpty()) {
+			Main.modele.jeu.MAJNbErreurs();
+			afficherNombreErreurs(Main.modele.jeu.getNbErreurs());
+			return false;
 		}
-		affichageMot = sb.toString();
-		labelMotMystere.setText(affichageMot);
+		else {
+			StringBuilder sb = new StringBuilder(affichageMot);
+			for (int i : v) {
+		        sb.setCharAt(i, s.charAt(0));
+			}
+			affichageMot = sb.toString();
+			labelMotMystere.setText(affichageMot);
+			return true;
+		}
 	}
+	
+	public ImageView vie1;
+	public ImageView vie2;
+	public ImageView vie3;
+	public ImageView vie4;
+	public ImageView vie5;
+	public ImageView vie6;
+	
+	
+	public void afficherNombreErreurs(int nbErreur) {
+		
+		Image vie = new Image("file:Images/icone_vie_perdue.png");
+			
+		switch(nbErreur) {
+			case 1 : vie1.setImage(vie);break;
+			case 2 : vie2.setImage(vie);break;
+			case 3 : vie3.setImage(vie);break;
+			case 4 : vie4.setImage(vie);break;
+			case 5 : vie5.setImage(vie);break;
+			case 6 : vie6.setImage(vie);break;
+		}
+			
+		Image pendu = new Image("file:Images/"+nomPendu+"_pendu_"+nbErreur+".png");
+		lePendu.setImage(pendu);
+	}
+	
+	
+	
+	public Button boutonA;
+	public Button boutonB;
+	public Button boutonC;
+	public Button boutonD;
+	public Button boutonE;
+	public Button boutonF;
+	public Button boutonG;
+	public Button boutonH;
+	public Button boutonI;
+	public Button boutonJ;
+	public Button boutonK;
+	public Button boutonL;
+	public Button boutonM;
+	public Button boutonN;
+	public Button boutonO;
+	public Button boutonP;
+	public Button boutonQ;
+	public Button boutonR;
+	public Button boutonS;
+	public Button boutonT;
+	public Button boutonU;
+	public Button boutonV;
+	public Button boutonW;
+	public Button boutonX;
+	public Button boutonY;
+	public Button boutonZ;
 	
 	
 	public void pressBoutonA () {
-		proposerLettre("A");
+		if (proposerLettre("A"))
+			boutonA.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonA.setStyle("-fx-background-color: RED;");
+		boutonA.setDisable(true);		
 	}
 	
 	public void pressBoutonB () {
-		proposerLettre("B");	
+		if (proposerLettre("B"))
+			boutonB.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonB.setStyle("-fx-background-color: RED;");
+		boutonB.setDisable(true);	
 	}
 	
 	public void pressBoutonC () {
-		proposerLettre("C");
+		if (proposerLettre("C"))
+			boutonC.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonC.setStyle("-fx-background-color: RED;");
+		boutonC.setDisable(true);
 	}
 	
 	public void pressBoutonD () {
-		proposerLettre("D");
+		if (proposerLettre("D"))
+			boutonD.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonD.setStyle("-fx-background-color: RED;");
+		boutonD.setDisable(true);
 	}
 	
 	public void pressBoutonE () {
-		proposerLettre("E");
+		if (proposerLettre("E"))
+			boutonE.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonE.setStyle("-fx-background-color: RED;");
+		boutonE.setDisable(true);
 	}
 	
 	public void pressBoutonF () {
-		proposerLettre("F");
+		if (proposerLettre("F"))
+			boutonF.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonF.setStyle("-fx-background-color: RED;");
+		boutonF.setDisable(true);
 	}
 	
 	public void pressBoutonG () {
-		proposerLettre("G");
+		if (proposerLettre("G"))
+			boutonG.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonG.setStyle("-fx-background-color: RED;");
+		boutonG.setDisable(true);
 	}
 	
 	public void pressBoutonH () {
-		proposerLettre("H");
+		if (proposerLettre("H"))
+			boutonH.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonH.setStyle("-fx-background-color: RED;");
+		boutonH.setDisable(true);
 	}
 	
 	public void pressBoutonI () {
-		proposerLettre("I");
+		if (proposerLettre("I"))
+			boutonI.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonI.setStyle("-fx-background-color: RED;");
+		boutonI.setDisable(true);
 	}
 	
 	public void pressBoutonJ () {
-		proposerLettre("J");
+		if (proposerLettre("J"))
+			boutonJ.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonJ.setStyle("-fx-background-color: RED;");
+		boutonJ.setDisable(true);
 	}
 	
 	public void pressBoutonK () {
-		proposerLettre("K");
+		if (proposerLettre("K"))
+			boutonK.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonK.setStyle("-fx-background-color: RED;");
+		boutonK.setDisable(true);
 	}
 	
 	public void pressBoutonL () {
-		proposerLettre("L");
+		if (proposerLettre("L"))
+			boutonL.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonL.setStyle("-fx-background-color: RED;");
+		boutonL.setDisable(true);
 	}
 	
 	public void pressBoutonM () {
-		proposerLettre("M");
+		if (proposerLettre("M"))
+			boutonM.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonM.setStyle("-fx-background-color: RED;");
+		boutonM.setDisable(true);
 	}
 	
 	public void pressBoutonN () {
-		proposerLettre("N");
+		if (proposerLettre("N"))
+			boutonN.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonN.setStyle("-fx-background-color: RED;");
+		boutonN.setDisable(true);
 	}
 	
 	public void pressBoutonO () {
-		proposerLettre("O");
+		if (proposerLettre("O"))
+			boutonO.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonO.setStyle("-fx-background-color: RED;");
+		boutonO.setDisable(true);
 	}
 	
 	public void pressBoutonP () {
-		proposerLettre("P");
+		if (proposerLettre("P"))
+			boutonP.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonP.setStyle("-fx-background-color: RED;");
+		boutonP.setDisable(true);
 	}
 	
 	public void pressBoutonQ () {
-		proposerLettre("Q");
+		if (proposerLettre("Q"))
+			boutonQ.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonQ.setStyle("-fx-background-color: RED;");
+		boutonQ.setDisable(true);
 	}
 	
 	public void pressBoutonR () {
-		proposerLettre("R");
+		if (proposerLettre("R"))
+			boutonR.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonR.setStyle("-fx-background-color: RED;");
+		boutonR.setDisable(true);
 	}
 	
 	public void pressBoutonS () {
-		proposerLettre("S");
+		if (proposerLettre("S"))
+			boutonS.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonS.setStyle("-fx-background-color: RED;");
+		boutonS.setDisable(true);
 	}
 	
 	public void pressBoutonT () {
-		proposerLettre("T");
+		if (proposerLettre("T"))
+			boutonT.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonT.setStyle("-fx-background-color: RED;");
+		boutonT.setDisable(true);
 	}
 	
 	public void pressBoutonU () {
-		proposerLettre("U");
+		if (proposerLettre("U"))
+			boutonU.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonU.setStyle("-fx-background-color: RED;");
+		boutonU.setDisable(true);
 	}
 	
 	public void pressBoutonV () {
-		proposerLettre("V");
+		if (proposerLettre("V"))
+			boutonV.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonV.setStyle("-fx-background-color: RED;");
+		boutonV.setDisable(true);
 	}
 	
 	public void pressBoutonW () {
-		proposerLettre("W");
+		if (proposerLettre("W"))
+			boutonW.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonW.setStyle("-fx-background-color: RED;");
+		boutonW.setDisable(true);
 	}
 	
 	public void pressBoutonX () {
-		proposerLettre("X");
+		if (proposerLettre("X"))
+			boutonX.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonX.setStyle("-fx-background-color: RED;");
+		boutonX.setDisable(true);
 	}
 	
 	public void pressBoutonY () {
-		proposerLettre("Y");
+		if (proposerLettre("Y"))
+			boutonY.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonY.setStyle("-fx-background-color: RED;");
+		boutonY.setDisable(true);
 	}
 	
 	public void pressBoutonZ () {
-		proposerLettre("Z");
+		if (proposerLettre("Z"))
+			boutonZ.setStyle("-fx-background-color: GREEN;");
+		else
+			boutonZ.setStyle("-fx-background-color: RED;");
+		boutonZ.setDisable(true);
 	}	
 }
