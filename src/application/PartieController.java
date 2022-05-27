@@ -3,22 +3,26 @@ package application;
 
 import java.util.Vector;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class PartieController {
-	public Label labelMotMystere;
-	// private String affichageMot;
-	// private ArrayList<Character> motTableau = new ArrayList<>();
-	public String nomPendu;
-	public ImageView lePendu;
+	@FXML
+	private Label labelMotMystere;
+	@FXML
+	private Label labelMessage;
+	private String nomPendu;
+	@FXML
+	private ImageView lePendu;
 	private String affichageMot = "";
 	
 	@FXML
-	public void initialize() {
+	private void initialize() {
 		initAffichageMot();
 		labelMotMystere.setText(affichageMot);
 		if (Main.modele.opt.getChoixAvatar() == 1)
@@ -26,11 +30,11 @@ public class PartieController {
 		else
 			nomPendu = "luffy";
 		labelMotMystere.setAlignment(Pos.BASELINE_CENTER);
-		
+		labelMessage.setStyle("-fx-background-color:  rgb(169,149,123, 0.85); -fx-background-radius:  10; -fx-font: "+(18+(int)(Main.modele.opt.getTaillePolice()*0.5))+" Papyrus;");
 	}
 	
 	private void initAffichageMot () {
-		for (int i=0 ; i < Main.modele.getMotMystere().length() ; i++) {
+		for (int i=0 ; i < Main.modele.jeu.getMotMystere().length() ; i++) {
 			affichageMot = affichageMot + "_";
 		}
 	}
@@ -42,6 +46,7 @@ public class PartieController {
 		if (v.isEmpty()) {
 			Main.modele.jeu.MAJNbErreurs();
 			afficherNombreErreurs(Main.modele.jeu.getNbErreurs());
+			partieTerminee();
 			return false;
 		}
 		else {
@@ -51,17 +56,36 @@ public class PartieController {
 			}
 			affichageMot = sb.toString();
 			labelMotMystere.setText(affichageMot);
+			partieTerminee();
 			return true;
 		}
 	}
 	
-	public ImageView vie1;
-	public ImageView vie2;
-	public ImageView vie3;
-	public ImageView vie4;
-	public ImageView vie5;
-	public ImageView vie6;
+	public void partieTerminee() {
+		if (Main.modele.jeu.getNbErreurs() >= Main.modele.jeu.getNbMaxErreurs() || Main.modele.jeu.ToutTrouve()) {
+			try {
+				AnchorPane outro = FXMLLoader.load(getClass().getResource("Outro.fxml"));
+				Main.root.getChildren().clear();
+	        	Main.root.getChildren().add(outro);
+				Main.root.getChildren().add(Main.toolBar);
+	        } 
+			catch (Exception e) {e.printStackTrace();}
+		}
+	}
 	
+	
+	@FXML
+	private ImageView vie1;
+	@FXML
+	private ImageView vie2;
+	@FXML
+	private ImageView vie3;
+	@FXML
+	private ImageView vie4;
+	@FXML
+	private ImageView vie5;
+	@FXML
+	private ImageView vie6;
 	
 	public void afficherNombreErreurs(int nbErreur) {
 		
@@ -81,36 +105,63 @@ public class PartieController {
 	}
 	
 	
+	@FXML
+	private Button boutonA;
+	@FXML
+	private Button boutonB;
+	@FXML
+	private Button boutonC;
+	@FXML
+	private Button boutonD;
+	@FXML
+	private Button boutonE;
+	@FXML
+	private Button boutonF;
+	@FXML
+	private Button boutonG;
+	@FXML
+	private Button boutonH;
+	@FXML
+	private Button boutonI;
+	@FXML
+	private Button boutonJ;
+	@FXML
+	private Button boutonK;
+	@FXML
+	private Button boutonL;
+	@FXML
+	private Button boutonM;
+	@FXML
+	private Button boutonN;
+	@FXML
+	private Button boutonO;
+	@FXML
+	private Button boutonP;
+	@FXML
+	private Button boutonQ;
+	@FXML
+	private Button boutonR;
+	@FXML
+	private Button boutonS;
+	@FXML
+	private Button boutonT;
+	@FXML
+	private Button boutonU;
+	@FXML
+	private Button boutonV;
+	@FXML
+	private Button boutonW;
+	@FXML
+	private Button boutonX;
+	@FXML
+	private Button boutonY;
+	@FXML
+	private Button boutonZ;
 	
-	public Button boutonA;
-	public Button boutonB;
-	public Button boutonC;
-	public Button boutonD;
-	public Button boutonE;
-	public Button boutonF;
-	public Button boutonG;
-	public Button boutonH;
-	public Button boutonI;
-	public Button boutonJ;
-	public Button boutonK;
-	public Button boutonL;
-	public Button boutonM;
-	public Button boutonN;
-	public Button boutonO;
-	public Button boutonP;
-	public Button boutonQ;
-	public Button boutonR;
-	public Button boutonS;
-	public Button boutonT;
-	public Button boutonU;
-	public Button boutonV;
-	public Button boutonW;
-	public Button boutonX;
-	public Button boutonY;
-	public Button boutonZ;
 	
 	
-	public void pressBoutonA () {
+	@FXML 
+	private void pressBoutonA () {
 		if (proposerLettre("A"))
 			boutonA.setStyle("-fx-background-color: GREEN;");
 		else
@@ -118,7 +169,8 @@ public class PartieController {
 		boutonA.setDisable(true);		
 	}
 	
-	public void pressBoutonB () {
+	@FXML 
+	private void pressBoutonB () {
 		if (proposerLettre("B"))
 			boutonB.setStyle("-fx-background-color: GREEN;");
 		else
@@ -126,7 +178,8 @@ public class PartieController {
 		boutonB.setDisable(true);	
 	}
 	
-	public void pressBoutonC () {
+	@FXML 
+	private void pressBoutonC () {
 		if (proposerLettre("C"))
 			boutonC.setStyle("-fx-background-color: GREEN;");
 		else
@@ -134,7 +187,8 @@ public class PartieController {
 		boutonC.setDisable(true);
 	}
 	
-	public void pressBoutonD () {
+	@FXML 
+	private void pressBoutonD () {
 		if (proposerLettre("D"))
 			boutonD.setStyle("-fx-background-color: GREEN;");
 		else
@@ -142,7 +196,8 @@ public class PartieController {
 		boutonD.setDisable(true);
 	}
 	
-	public void pressBoutonE () {
+	@FXML 
+	private void pressBoutonE () {
 		if (proposerLettre("E"))
 			boutonE.setStyle("-fx-background-color: GREEN;");
 		else
@@ -150,7 +205,8 @@ public class PartieController {
 		boutonE.setDisable(true);
 	}
 	
-	public void pressBoutonF () {
+	@FXML 
+	private void pressBoutonF () {
 		if (proposerLettre("F"))
 			boutonF.setStyle("-fx-background-color: GREEN;");
 		else
@@ -158,7 +214,8 @@ public class PartieController {
 		boutonF.setDisable(true);
 	}
 	
-	public void pressBoutonG () {
+	@FXML 
+	private void pressBoutonG () {
 		if (proposerLettre("G"))
 			boutonG.setStyle("-fx-background-color: GREEN;");
 		else
@@ -166,7 +223,8 @@ public class PartieController {
 		boutonG.setDisable(true);
 	}
 	
-	public void pressBoutonH () {
+	@FXML 
+	private void pressBoutonH () {
 		if (proposerLettre("H"))
 			boutonH.setStyle("-fx-background-color: GREEN;");
 		else
@@ -174,7 +232,8 @@ public class PartieController {
 		boutonH.setDisable(true);
 	}
 	
-	public void pressBoutonI () {
+	@FXML 
+	private void pressBoutonI () {
 		if (proposerLettre("I"))
 			boutonI.setStyle("-fx-background-color: GREEN;");
 		else
@@ -182,7 +241,8 @@ public class PartieController {
 		boutonI.setDisable(true);
 	}
 	
-	public void pressBoutonJ () {
+	@FXML 
+	private void pressBoutonJ () {
 		if (proposerLettre("J"))
 			boutonJ.setStyle("-fx-background-color: GREEN;");
 		else
@@ -190,7 +250,8 @@ public class PartieController {
 		boutonJ.setDisable(true);
 	}
 	
-	public void pressBoutonK () {
+	@FXML 
+	private void pressBoutonK () {
 		if (proposerLettre("K"))
 			boutonK.setStyle("-fx-background-color: GREEN;");
 		else
@@ -198,7 +259,8 @@ public class PartieController {
 		boutonK.setDisable(true);
 	}
 	
-	public void pressBoutonL () {
+	@FXML 
+	private void pressBoutonL () {
 		if (proposerLettre("L"))
 			boutonL.setStyle("-fx-background-color: GREEN;");
 		else
@@ -206,7 +268,8 @@ public class PartieController {
 		boutonL.setDisable(true);
 	}
 	
-	public void pressBoutonM () {
+	@FXML 
+	private void pressBoutonM () {
 		if (proposerLettre("M"))
 			boutonM.setStyle("-fx-background-color: GREEN;");
 		else
@@ -214,7 +277,8 @@ public class PartieController {
 		boutonM.setDisable(true);
 	}
 	
-	public void pressBoutonN () {
+	@FXML 
+	private void pressBoutonN () {
 		if (proposerLettre("N"))
 			boutonN.setStyle("-fx-background-color: GREEN;");
 		else
@@ -222,7 +286,8 @@ public class PartieController {
 		boutonN.setDisable(true);
 	}
 	
-	public void pressBoutonO () {
+	@FXML 
+	private void pressBoutonO () {
 		if (proposerLettre("O"))
 			boutonO.setStyle("-fx-background-color: GREEN;");
 		else
@@ -230,7 +295,8 @@ public class PartieController {
 		boutonO.setDisable(true);
 	}
 	
-	public void pressBoutonP () {
+	@FXML 
+	private void pressBoutonP () {
 		if (proposerLettre("P"))
 			boutonP.setStyle("-fx-background-color: GREEN;");
 		else
@@ -238,7 +304,8 @@ public class PartieController {
 		boutonP.setDisable(true);
 	}
 	
-	public void pressBoutonQ () {
+	@FXML 
+	private void pressBoutonQ () {
 		if (proposerLettre("Q"))
 			boutonQ.setStyle("-fx-background-color: GREEN;");
 		else
@@ -246,7 +313,8 @@ public class PartieController {
 		boutonQ.setDisable(true);
 	}
 	
-	public void pressBoutonR () {
+	@FXML 
+	private void pressBoutonR () {
 		if (proposerLettre("R"))
 			boutonR.setStyle("-fx-background-color: GREEN;");
 		else
@@ -254,7 +322,8 @@ public class PartieController {
 		boutonR.setDisable(true);
 	}
 	
-	public void pressBoutonS () {
+	@FXML 
+	private void pressBoutonS () {
 		if (proposerLettre("S"))
 			boutonS.setStyle("-fx-background-color: GREEN;");
 		else
@@ -262,7 +331,8 @@ public class PartieController {
 		boutonS.setDisable(true);
 	}
 	
-	public void pressBoutonT () {
+	@FXML 
+	private void pressBoutonT () {
 		if (proposerLettre("T"))
 			boutonT.setStyle("-fx-background-color: GREEN;");
 		else
@@ -270,7 +340,8 @@ public class PartieController {
 		boutonT.setDisable(true);
 	}
 	
-	public void pressBoutonU () {
+	@FXML 
+	private void pressBoutonU () {
 		if (proposerLettre("U"))
 			boutonU.setStyle("-fx-background-color: GREEN;");
 		else
@@ -278,7 +349,8 @@ public class PartieController {
 		boutonU.setDisable(true);
 	}
 	
-	public void pressBoutonV () {
+	@FXML 
+	private void pressBoutonV () {
 		if (proposerLettre("V"))
 			boutonV.setStyle("-fx-background-color: GREEN;");
 		else
@@ -286,7 +358,8 @@ public class PartieController {
 		boutonV.setDisable(true);
 	}
 	
-	public void pressBoutonW () {
+	@FXML 
+	private void pressBoutonW () {
 		if (proposerLettre("W"))
 			boutonW.setStyle("-fx-background-color: GREEN;");
 		else
@@ -294,7 +367,8 @@ public class PartieController {
 		boutonW.setDisable(true);
 	}
 	
-	public void pressBoutonX () {
+	@FXML 
+	private void pressBoutonX () {
 		if (proposerLettre("X"))
 			boutonX.setStyle("-fx-background-color: GREEN;");
 		else
@@ -302,7 +376,8 @@ public class PartieController {
 		boutonX.setDisable(true);
 	}
 	
-	public void pressBoutonY () {
+	@FXML 
+	private void pressBoutonY () {
 		if (proposerLettre("Y"))
 			boutonY.setStyle("-fx-background-color: GREEN;");
 		else
@@ -310,7 +385,8 @@ public class PartieController {
 		boutonY.setDisable(true);
 	}
 	
-	public void pressBoutonZ () {
+	@FXML 
+	private void pressBoutonZ () {
 		if (proposerLettre("Z"))
 			boutonZ.setStyle("-fx-background-color: GREEN;");
 		else

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+
+<ToolBar prefHeight="54.0" prefWidth="238.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IntroController">
+  <items>
+    <Button mnemonicParsing="false" onAction="#onActionJouer" prefHeight="35.0" prefWidth="35.0" style="-fx-background-image: url('file:Images/icone_jouer.png'); -fx-background-position: center; -fx-background-size: stretch; -fx-background-color: green;" />
+      <Button mnemonicParsing="false" onAction="#onActionParametre" prefHeight="35.0" prefWidth="35.0" style="-fx-background-image: url('file:Images/icone_options.png'); -fx-background-color: yellow; -fx-background-position: center; -fx-background-size: stretch;" />
+      <Button mnemonicParsing="false" onAction="#onActionAide" prefHeight="35.0" prefWidth="35.0" style="-fx-background-image: url('file:Images/icone_support.png'); -fx-background-color: blue; -fx-background-position: center; -fx-background-size: stretch;" />
+      <Button mnemonicParsing="false" onAction="#onActionQuitter" prefHeight="35.0" prefWidth="35.0" style="-fx-background-image: url('file:Images/icone_quitter.png'); -fx-background-color: red; -fx-background-position: center; -fx-background-size: stretch;" />
+  </items>
+</ToolBar>
